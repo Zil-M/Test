@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 #include <random> 
-random_device random;
 #include "key.h"
 
 
@@ -32,9 +31,10 @@ void CreatKey::Lkey() {
 }
 // E Ű
 void CreatKey::Ekey() {
-	mt19937 rand(random);
+	random_device random;
+	mt19937 gen(random());
 	uniform_int_distribution<int> dist1_(1, l);
-	int n = dist1_(rand);
+	int n = dist1_(gen);
 	if (gcd(n, l) == 1) {
 		e = n;
 	}
@@ -42,9 +42,10 @@ void CreatKey::Ekey() {
 }
 // D Ű
 void CreatKey::Dkey() {
-	mt19937 rand(random);
+	random_device random;
+	mt19937 gen(random());
 	uniform_int_distribution<int> dist1_(1, l);
-	int n = dist1_(rand);
+	int n = dist1_(gen);
 	if ((e*n) % l == 1) {
 		d = n;
 	}

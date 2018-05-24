@@ -1,8 +1,6 @@
 #include <iostream>
 using namespace std;
 #include <string>
-#include <random> 
-random_device random;
 #include "key.h"
 
 CreatKey* Key = new CreatKey;
