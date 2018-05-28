@@ -1,46 +1,72 @@
 #include <iostream>
 using namespace std;
-#include <string>
 #include "key.h"
 
-CreatKey* Key = new CreatKey;
 Alice* ali = new Alice;
 Bob* bob = new Bob;
 
+// 거듭제곱 메소드
+int pow(int x, int y)
+{
+	int result = x;
+	int i;
+	for (i = 1; i<y; i++)
+	{
+		result *= x;
+	}
+	return result;
+}
 
 int main()
 {
+	int p, q;
 	string messege; // 평문
 	string EnMessege; // 암호문
 	string DnMessege; // 복호문
-	int N = Key->getN();
-	int L = Key->getL();
-	int E = Key->getE();
-	int D = Key->getD();
+
+
+	cout << "두 소수 p,q 입력 :" << endl;
+	cout << " p :";
+	cin >> p;
+	cout << " q :";
+	cin >> q;
+
+	CreatKey* Key = new CreatKey;
+
+	int n = Key->Nkey(p, q);
+	int l = Key->Lkey(p, q);
+	int e = Key->Ekey(l);
+	int d = Key->Dkey(l, e);
 
 	// 키 쌍 생성
-	cout << "N 키 : " << N << endl;
-	cout << "L 키 : " << L << endl;
-	cout << "E 키 : " << E << endl;
-	cout << "D 키 : " << D << endl;
+	//cout << "N 키 : " << n << endl;
+	//cout << "L 키 : " << l << endl;
+	//cout << "E 키 : " << e << endl;
+	//cout << "D 키 : " << d << endl;
 	cout << " --------------------------------------" << endl;
 
 
 	/*
-	// 6.앨리스 - 세션키 획득
-	int ali_k = GetAliceKey();
+	// 6.앨리스 - 공개키 획득
+	ali->setE(e);
+	ali->setN(e);
 
-	// 7. 평문 암호화 후 전송
+	// 7. 밥 - 개인 키 획득
+	bob->setD(d);
+	bob->setN(n);
+
+	/*
+	// 8. 평문 입력
 	cout << "평문 : ";
 	cin >> messege;
 
 	// 평문 암호화
 	for (unsigned int i = 0; i < messege.length(); i++) {
-		EnMessege += messege[i] ^ ali_k;
+		EnMessege += pow(messege[i], e) % n;
 	}
 
 	cout << "평문 암호문 : " << EnMessege << endl;
-
+	/*
 	// 8. 밥 - 세션키 획득
 	int bob_k = GetBobKey();
 
@@ -56,3 +82,4 @@ int main()
 	*/
 	return 0;
 }
+
