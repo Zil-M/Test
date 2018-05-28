@@ -15,13 +15,13 @@ public:
 	int lcm(int a, int b);
 
 	// N Ű
-	void Nkey();
+	int Nkey(int p, int q);
 	// L Ű
-	void Lkey();
+	int Lkey(int p, int q);
 	// E Ű
-	void Ekey();
+	int Ekey(int l);
 	// D Ű
-	void Dkey();
+	int Dkey(int l, int e);
 
 	int getN() {
 		return n;
